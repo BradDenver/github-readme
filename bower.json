@@ -1,0 +1,7 @@
+{
+  "name": "github-readme#gh-pages",
+  "private": true,
+  "dependencies": {
+    "github-readme": "BradDenver/github-readme#master"
+  }
+}

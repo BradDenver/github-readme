@@ -1,0 +1,21 @@
+{
+  "name": "github-readme",
+  "keywords": "seed, polymer, web-components",
+  "main": "github-readme.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.5",
+    "github-markdown-css": "~0.2.0",
+    "core-ajax": "Polymer/core-ajax#~0.3.5"
+  },
+  "homepage": "https://github.com/BradDenver/github-readme",
+  "_release": "b9fb42a4c1",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b9fb42a4c12b0c6934a4bb98c2a1ccbcda82a73a"
+  },
+  "_source": "git://github.com/BradDenver/github-readme.git",
+  "_target": "master",
+  "_originalSource": "BradDenver/github-readme",
+  "_direct": true
+}
