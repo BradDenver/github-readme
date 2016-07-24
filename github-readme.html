@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../core-ajax/core-ajax.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <!--
 An element to retrieve and display the readme for any GitHub repository.
@@ -16,7 +16,7 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
 @blurb An element to retrieve and display the readme for any GitHub repository
 @homepage http://BradDenver.github.io/github-readme
 -->
-<polymer-element name="github-readme" attributes="auto user repo">
+<dom-module id="github-readme">
 
   <template>
 
@@ -24,13 +24,12 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
 
     <content></content>
 
-    <core-ajax 
-      id="ajaxer" 
-      auto="{{auto}}"
+    <iron-ajax
+      auto
       headers='{"Accept": "application/vnd.github.VERSION.html"}'
-      url="{{readmeUrl}}" 
-      on-core-response="{{ajaxResponseHandler}}">
-    </core-ajax>
+      url$="https://api.github.com/repos/[[user]]/[[repo]]/readme"
+      handle-as="text"
+      on-response="ajaxResponseHandler"></iron-ajax>
 
     <div id="responseDiv" class="markdown-body">{{responseBody}}</div>
 
@@ -38,62 +37,42 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
 
   <script>
 
-    Polymer('github-readme', {
-      
-      /**
-       * The GitHub username for the repo.
-       *
-       * @attribute user
-       * @type string
-       */
-       user: '',
+    Polymer({
+      is: 'github-readme',
 
-      /**
-       * The GitHub repository name to get the readme from.
-       *
-       * @attribute repo
-       * @type string
-       */
-      repo: '',
+      properties: {
+        /**
+         * The GitHub username for the repo.
+         *
+         * @attribute user
+         * @type string
+         */
+         user: '',
 
-      /**
-       * If true, automatically performs an Ajax request for the readme when the user and repo changes.
-       *
-       * @attribute auto
-       * @type bool
-       * @default false
-       */
-      auto: false,
+        /**
+         * The GitHub repository name to get the readme from.
+         *
+         * @attribute repo
+         * @type string
+         */
+        repo: '',
 
-      ready: function() {
-        //this.readmeUrl = 'https://api.github.com/repos/' + this.user + '/' + this.repo + '/readme';
-      },
-
-      observe: {
-        user: 'setUrl',
-        repo: 'setUrl'
-      },
-
-      setUrl: function() {
-        this.readmeUrl = 'https://api.github.com/repos/' + this.user + '/' + this.repo + '/readme';
-      },
-
-      
-      /**
-       * The `go` method calls the go method of the internal core-ajax element that retrieves the readme content.
-       *
-       * @method go
-       */
-      go: function() {
-        this.$.ajaxer.go();
+        /**
+         * If true, automatically performs an Ajax request for the readme when the user and repo changes.
+         *
+         * @attribute auto
+         * @type bool
+         * @default false
+         */
+        auto: false,
       },
 
       ajaxResponseHandler: function(e) {
         this.$.responseDiv.innerHTML = e.detail.response;
       }
-      
+
     });
 
   </script>
 
-</polymer-element>
+</dom-module>
