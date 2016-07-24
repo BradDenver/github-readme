@@ -28,7 +28,7 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
       auto
       headers='{"Accept": "application/vnd.github.VERSION.html"}'
       url$="https://api.github.com/repos/[[user]]/[[repo]]/readme"
-      handle-as="json"
+      handle-as="text"
       on-response="ajaxResponseHandler"></iron-ajax>
 
     <div id="responseDiv" class="markdown-body">{{responseBody}}</div>
@@ -38,8 +38,8 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
   <script>
 
     Polymer({
-            
       is: 'github-readme',
+
       properties: {
         /**
          * The GitHub username for the repo.
@@ -70,7 +70,7 @@ Styling thanks to [github-markdown-css](https://github.com/sindresorhus/github-m
       ajaxResponseHandler: function(e) {
         this.$.responseDiv.innerHTML = e.detail.response;
       }
-      
+
     });
 
   </script>
