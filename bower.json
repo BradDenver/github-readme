@@ -7,7 +7,7 @@
   "homepage": "http://braddenver.github.io/github-readme",
   "main": "github-readme.html",
   "dependencies": {
-    "polymer": "Polymer/polymer",
+    "polymer": "Polymer/polymer#^1.6.0",
     "github-markdown-css": "2.3",
     "iron-ajax": "PolymerElements/iron-ajax"
   }
